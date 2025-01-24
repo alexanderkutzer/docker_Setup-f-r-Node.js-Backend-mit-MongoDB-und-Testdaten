@@ -1,0 +1,35 @@
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo-container
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    networks:
+      - app-network
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build:
+      context: ./api-backend
+      dockerfile: Dockerfile
+    container_name: node-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    networks:
+      - app-network
+    depends_on:
+      - mongo
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
