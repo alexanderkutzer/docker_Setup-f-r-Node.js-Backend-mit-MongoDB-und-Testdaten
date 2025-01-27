@@ -1,0 +1,30 @@
+# Betriebssystem-Dateien
+.DS_Store
+Thumbs.db
+
+# Log-Dateien
+*.log
+
+# Temporäre Dateien
+*.tmp
+*.swp
+*.swo
+
+# Build-Ordner
+/dist/
+/build/
+/out/
+
+# Abhängigkeiten
+/node_modules/
+/vendor/
+
+# Umgebungsvariablen
+.env
+.env.local
+
+# IDE/Editor-spezifisch
+.vscode/
+.idea/
+*.iml
+
